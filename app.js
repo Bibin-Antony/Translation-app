@@ -1,4 +1,4 @@
-var btnTranslate = document.querySelector("#btn-translate");
+var btnTranslate = document.getElementById("btn-translate");
 var txtInput = document.querySelector("#txt-input");
 var outputBox = document.querySelector("#output-box");
 
@@ -16,10 +16,13 @@ function errorHandler(error){
 };
 
 function clickEventHandler(){
-    var inputText = txtInput.value;//taking input
+    var inputText = txtInput.value; //taking input
 
     fetch(getTranslationURL(inputText))
-        .then(response => response.json())
+        .then(function gettingResponse(response){
+            response.json();
+        })
+        //.then(response => response.json)
         .then(json => {
             var translatedText = json.contents.translated;
             outputBox.innerText = translatedText;
